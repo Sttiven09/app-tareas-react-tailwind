@@ -46,6 +46,13 @@ const App = () => {
       }
       setTareas([...tareas,nuevaTarea])
     }
+    const actualizarTarea = ( id) => {
+      setTareas(tareas.map((tarea) => tarea.id === id ? {...tarea, completado: !tarea.completado}:tarea))
+    }
+
+    const eliminarTarea = (id) => {
+      setTareas(tareas.filter((tarea) => tarea.id !== id))
+    }
 
   return (<div className="bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-contain min-h-screen bg-gray-300">
     {/*Header*/}
@@ -54,7 +61,7 @@ const App = () => {
       {/*Crear Tareas*/}
       <CrearTarea crearTarea={crearTarea}/>
       {/*TareaList Lista de todas las tareas ItemTarea -> articulos*/}
-      <ListaTareas tareas={tareas}/>
+      <ListaTareas tareas={tareas} eliminarTarea={eliminarTarea} actualizarTarea={actualizarTarea}/>
       {/*Tareas computadas - contar cantidad de tareas*/}
       <TareasComputadas/>
       {/*TareaFiltrar -> FiltrarTareas */}

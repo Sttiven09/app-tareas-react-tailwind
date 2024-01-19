@@ -1,7 +1,7 @@
 import CheckIcon from "../icons/CheckIcon"
 import CrossIcon from "../icons/CrossIcon"
 
-const TareaItem = ({tarea}) => { 
+const TareaItem = ({tarea, eliminarTarea, actualizarTarea}) => { 
 
     const { id, completado, titulo } = tarea
 
@@ -12,13 +12,19 @@ const TareaItem = ({tarea}) => {
 
                 <button className={`w-5 h-5 rounded-full ${
                     completado ? "grid  border- bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  flex-none place-items-center"
-                    : "border-2 inline-block"}`}>
+                    : "border-2 inline-block"}`}
+                    onClick={() => actualizarTarea(id) }
+                    
+                    >
+                    
                 
                 {completado && <CheckIcon/>}
                 </button>
-                <p className="text-gray-700 grow">{titulo}</p> 
-                <button className="flex-none"><CrossIcon/></button>
+                <p className={` text-gray-700 grow ${
+                    completado && "line-through"}`}>{titulo}</p> 
+                <button className="flex-none" onClick={() => eliminarTarea(id)}><CrossIcon/></button>
             </article>
+
     )
 }
 export default TareaItem
