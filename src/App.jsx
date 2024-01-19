@@ -16,7 +16,7 @@ const estadoInicialTareas = [
   {
     id:2,
     titulo: "Estudiar Vue.js",
-    completado :false,
+    completado :true,
 
   },
   {
@@ -28,22 +28,31 @@ const estadoInicialTareas = [
   {
     id:4,
     titulo: "Estudiar Tailwind css",
-    completado :false,
+    completado :true,
 
   }
   
 ]
 
 const App = () => {
+  
+    const [tareas, setTareas] = useState(estadoInicialTareas)
 
-  const [tareas, setTareas] = useState(estadoInicialTareas)
+    const crearTarea = (titulo) =>{
+      const nuevaTarea ={
+        id: Date.now(),
+        titulo:titulo.trim(),
+        completado: false,
+      }
+      setTareas([...tareas,nuevaTarea])
+    }
 
   return (<div className="bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-contain min-h-screen bg-gray-300">
     {/*Header*/}
     <Header/>
     <main className="container mx-auto px-4 mt-8">
       {/*Crear Tareas*/}
-      <CrearTarea/>
+      <CrearTarea crearTarea={crearTarea}/>
       {/*TareaList Lista de todas las tareas ItemTarea -> articulos*/}
       <ListaTareas tareas={tareas}/>
       {/*Tareas computadas - contar cantidad de tareas*/}
