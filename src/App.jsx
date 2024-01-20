@@ -58,9 +58,20 @@ const App = () => {
     const eliminarTareasCompletadas = () => {
       setTareas(tareas.filter((tarea) => !tarea.completado))
     }
+    const [filtar, setfiltar] = useState("todas")
+
+    const cambiarFiltro = (filtrar) => setfiltar(filtrar)
     
-
-
+    const filtrarTareas = () =>{
+    switch(filtar){
+      case "todas":
+        return tareas
+      case "sinCompletar":
+        return tareas.filter((tarea) => !tarea.completado)
+      case "completada":
+        return tareas.filter((tarea) => tarea.completado)
+    }
+  }
 
   return (<div className="bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-contain min-h-screen bg-gray-300">
     {/*Header*/}
@@ -69,11 +80,11 @@ const App = () => {
       {/*Crear Tareas*/}
       <CrearTarea crearTarea={crearTarea}/>
       {/*TareaList Lista de todas las tareas ItemTarea -> articulos*/}
-      <ListaTareas tareas={tareas} eliminarTarea={eliminarTarea} actualizarTarea={actualizarTarea}/>
+      <ListaTareas tareas={filtrarTareas()} eliminarTarea={eliminarTarea} actualizarTarea={actualizarTarea}/>
       {/*Tareas computadas - contar cantidad de tareas*/}
       <TareasComputadas tareasNoCompletadas={tareasNoCompletadas} eliminarTareasCompletadas={eliminarTareasCompletadas}/>
       {/*TareaFiltrar -> FiltrarTareas */}
-      <FiltarTareas/>
+      <FiltarTareas cambiarFiltro={cambiarFiltro} filtar={filtar}/>
     </main>
 
       <Footer/>
