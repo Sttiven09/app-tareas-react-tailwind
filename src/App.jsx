@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CrearTarea from "./components/CrearTarea"
 import FiltarTareas from "./components/FiltrarTareas"
 import Footer from "./components/Footer"
@@ -6,37 +6,16 @@ import Header from "./components/Header"
 import ListaTareas from "./components/ListaTareas"
 import TareasComputadas from "./components/TareasComputadas"
 
-const estadoInicialTareas = [
-  {
-    id:1,
-    titulo: "Estudiar react",
-    completado :false,
-
-  },
-  {
-    id:2,
-    titulo: "Estudiar Vue.js",
-    completado :true,
-
-  },
-  {
-    id:3,
-    titulo: "Estudiar Laravel",
-    completado :false,
-
-  },
-  {
-    id:4,
-    titulo: "Estudiar Tailwind css",
-    completado :true,
-
-  }
-  
-]
+const estadoInicialTareas = JSON.parse(localStorage.getItem("tareas")|| [] )
 
 const App = () => {
   
     const [tareas, setTareas] = useState(estadoInicialTareas)
+
+    useEffect(() => {
+      localStorage.setItem("tareas",JSON.stringify(tareas))
+    }, [tareas])
+    
 
     const crearTarea = (titulo) =>{
       const nuevaTarea ={
