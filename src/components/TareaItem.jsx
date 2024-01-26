@@ -6,7 +6,7 @@ const TareaItem = ({tarea, eliminarTarea, actualizarTarea}) => {
     const { id, completado, titulo } = tarea
 
     return (
-        <article className="flex gap-4  px-4 py-4 border-b-gray-400 border-b dark:bg-gray-800">
+        <article className="flex gap-4  px-4 py-4 border-b-gray-400 border-b">
                 
                 {/*<button className="rounded-full border-2 inline-block"></button>*/}
 
@@ -20,7 +20,7 @@ const TareaItem = ({tarea, eliminarTarea, actualizarTarea}) => {
                 
                 {completado && <CheckIcon/>}
                 </button>
-                <p className={` text-gray-700 dark:text-gray-400 grow ${
+                <p className={` text-gray-700 dark:text-gray-400 transition-all duration-1000 grow ${
                     completado && "line-through"}`}>{titulo}</p> 
                 <button className="flex-none" onClick={() => eliminarTarea(id)}><CrossIcon/></button>
             </article>
