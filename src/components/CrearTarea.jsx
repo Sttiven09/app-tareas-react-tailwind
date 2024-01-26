@@ -24,6 +24,7 @@ const CrearTarea = ({crearTarea}) => {
             onChange={(e) => setTitulo(e.target.value) }
             />
         </form>
+        
     )
 }
 
