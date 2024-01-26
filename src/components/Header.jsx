@@ -21,7 +21,7 @@ const Header = () => {
     
 
     return (
-    <header className="container mx-auto px-4 pt-8 ">
+    <header className="container mx-auto px-4 pt-8 md:max-w-5xl">
     <div className="flex justify-between">
     <h1 className="uppercase text-white text-3xl font-semibold tracking-[0.4em] transition-all duration-1000">Tareas</h1>
     <button onClick={()=>setDarkMode(!darkMode)}>
