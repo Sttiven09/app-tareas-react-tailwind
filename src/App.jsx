@@ -7,7 +7,7 @@ import ListaTareas from "./components/ListaTareas"
 import TareasComputadas from "./components/TareasComputadas"
 
 const estadoInicialTareas = JSON.parse(localStorage.getItem("tareas")) || [] 
-
+//Problema parentesis finalizando estadoInicialTareas
 const App = () => {
   
     const [tareas, setTareas] = useState(estadoInicialTareas)
